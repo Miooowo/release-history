@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Release History — 版本发布曲线</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-dim: #388bfd66;
+      --danger: #f85149;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    input[type="text"] {
+      width: 12rem;
+      padding: 0.5rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    input.input-repo {
+      width: min(100%, 28rem);
+      flex: 1;
+      min-width: 12rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.08); }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      filter: none;
+    }
+    button.btn-secondary {
+      background: transparent;
+      color: var(--accent);
+    }
+    button.btn-secondary:hover:not(:disabled) {
+      background: #388bfd22;
+    }
+    .chart-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 1rem;
+      min-height: 380px;
+    }
+    .meta {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .err {
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      background: #f8514922;
+      border: 1px solid #f8514966;
+      color: #ff7b72;
+      font-size: 0.875rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Release History</h1>
+    <p class="sub">类似 <a href="https://star-history.com" style="color: var(--accent);">star-history</a>：蓝色为累积 Release 数；紫色为从 tag 解析的语义化版本号随时间爬升（<code>x.y.z</code> / <code>v</code> 前缀 / 仅 <code>x.y</code> 视为 <code>x.y.0</code>）。仓库一栏可直接填 <code>owner/repo</code> 或粘贴完整 GitHub 链接。</p>
+
+    <div class="row">
+      <label class="label-repo">仓库
+        <input type="text" id="ref" class="input-repo" placeholder="Miooowo/STS2-MoreEnchantStandalone 或粘贴 github.com 链接" spellcheck="false" autocomplete="off" />
+      </label>
+      <button type="button" id="load">加载曲线</button>
+      <button type="button" id="exportSvg" class="btn-secondary" disabled title="加载成功后导出与 README 可用的 SVG">导出 SVG</button>
+    </div>
+
+    <div id="err" class="err hidden"></div>
+
+    <div class="chart-box">
+      <canvas id="chart" height="120"></canvas>
+    </div>
+    <p class="meta" id="meta"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="./main.js" type="module"></script>
+</body>
+</html>
