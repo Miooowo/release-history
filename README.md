@@ -1,3 +1,4 @@
+![:name](https://count.getloli.com/@release-history?name=release-history&theme=booru-helltaker&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto)
 # Release History
 
 本地页面：用 GitHub Releases 画「累积发布数 + 语义化版本」曲线（交互图在 `index.html`）。
@@ -45,4 +46,14 @@ node scripts/gen-release-chart-svg.mjs OWNER REPO docs/release-chart.svg
 
 ## 许可证
 
-如未另行说明，以仓库内文件为准。
+MIT
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=Miooowo%2Frelease-history&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Miooowo/release-history&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Miooowo/release-history&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Miooowo/release-history&type=date&legend=top-left" />
+ </picture>
+</a>
